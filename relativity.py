@@ -1,5 +1,5 @@
 import pygame
-import sys
+import sys, Gooey, intervening_text_1
 
 class Grid:
     color = (127, 127, 127)
@@ -298,16 +298,19 @@ class Environment:
     
     def check_for_events(self):
         for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
-            elif event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
-                self.menu.run()
+            if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):
+                x= Gooey.Menu()
+                x.run()
             elif event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
                 self.pause()
             elif event.type == pygame.KEYDOWN and event.key == pygame.K_F1:
                 if self.sim_type == 'train_frame' or self.sim_type == 'ground_frame':
                     self.show_transformation()
+            ### NEW CONDITION
+            elif event.type == pygame.KEYDOWN and event.key == pygame.K_LEFT:
+                y = intervening_text_1.Text()
+                y.display_text()
+
     
     def update(self):
         self.check_for_events()
