@@ -1,15 +1,12 @@
 import pygame, thorpy
-from relativity import Environment
-
+import Gooey
 
 content= """
-        STATIONARY TRAIN
-        EINSTEIN
+        END OF SIMULATION
     """
 subcontent = """
-        space = pause
-        esc = main menu
-        left click = continue
+
+        Left Click - Main Menu
         """
 class Text(object):
         
@@ -17,7 +14,6 @@ class Text(object):
     def __init__(self):
         def start_sim(event):
             self.sim()
-            ##Change this reaction to KeyPress > Right Arrow Key
         my_reaction = thorpy.Reaction(reacts_to=pygame.MOUSEBUTTONDOWN,
                                       reac_func=start_sim)
         title_element = thorpy.make_text(content, 25, (255, 255, 255))
@@ -30,8 +26,8 @@ class Text(object):
     
     
     def sim(self):
-        env = Environment(self, sim_type='stationary_train', light_type='einstein')
-        env.run()
+        x= Gooey.Menu()
+        x.run()
 
 
             

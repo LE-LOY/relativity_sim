@@ -1,10 +1,8 @@
 import pygame, thorpy
-from relativity import Environment
-
 
 content= """
         STATIONARY TRAIN
-        EINSTEIN
+        GALILEAN
     """
 subcontent = """
         space = pause
@@ -30,7 +28,8 @@ class Text(object):
     
     
     def sim(self):
-        env = Environment(self, sim_type='stationary_train', light_type='einstein')
+        from relativity import Environment
+        env = Environment(self, sim_type='stationary_train', light_type='gallilean')
         env.run()
 
 

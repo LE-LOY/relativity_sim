@@ -17,7 +17,7 @@ class Menu:
         #make buttons
         simButton1 = thorpy.make_button("Einstein1", func = self.sim1)
 
-
+    
         #separate properties for quitButton
         quitButton = thorpy.make_button("Quit", func=thorpy.functions.quit_menu_func)
         quitButton.set_main_color((255,255,255))
@@ -26,7 +26,7 @@ class Menu:
         quitButton.set_size((200,50))
         quitButton.set_font('Calibri')
 
-                                         
+                                             
         #set button properties
         setProperties(simButton1)
         setProperties(quitButton)

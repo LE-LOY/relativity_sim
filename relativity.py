@@ -1,5 +1,9 @@
 import pygame
-import sys, Gooey, intervening_text_1
+import sys, Gooey
+import intervening_text_1, int_text_2, int_text_3, int_text_4, int_text_5
+import int_text_6, int_text_7, int_text_8, int_text_9
+
+global sim_x
 
 class Grid:
     color = (127, 127, 127)
@@ -52,7 +56,7 @@ class Light:
             self.y = self.train.y + self.train.h//2
             self.dx = self.train.dx - self.c
             self.dy = self.train.dy
-        elif type == 'gallilean_right':
+        elif type == 'gallilean_right': 
             self.x = self.train.x + self.train.w//2
             self.y = self.train.y + self.train.h//2
             self.dx = self.train.dx + self.c
@@ -154,7 +158,9 @@ class Environment:
         self.switchable = switchable
         self.switch_count = 0
         self.stopped = False
-    
+    ###
+        self.findtype(sim_type, light_type)
+        ####
         pygame.init()
         self.screen = pygame.display.set_mode((self.screen_X_size, self.screen_Y_size))
         
@@ -306,10 +312,38 @@ class Environment:
             elif event.type == pygame.KEYDOWN and event.key == pygame.K_F1:
                 if self.sim_type == 'train_frame' or self.sim_type == 'ground_frame':
                     self.show_transformation()
-            ### NEW CONDITION
+            ### NEW CONDITIONS
+                    """
             elif event.type == pygame.KEYDOWN and event.key == pygame.K_LEFT:
                 y = intervening_text_1.Text()
                 y.display_text()
+                """
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                ##ADD ENVIRONMENT CONDITIONS
+                if sim_x =='st_e':
+                    y = int_text_2.Text()
+                    y.display_text()
+                elif sim_x =='st_g':
+                    y = int_text_3.Text()
+                    y.display_text()
+                elif sim_x =='mt_e':
+                    y = int_text_4.Text()
+                    y.display_text()
+                elif sim_x =='mt_g':
+                    y = int_text_5.Text()
+                    y.display_text()
+                elif sim_x =='tf_e':
+                    y = int_text_6.Text()
+                    y.display_text()
+                elif sim_x =='tf_g':
+                    y = int_text_7.Text()
+                    y.display_text()
+                elif sim_x =='gf_e':
+                    y = int_text_8.Text()
+                    y.display_text()
+                elif sim_x =='gf_g':
+                    y = int_text_9.Text()
+                    y.display_text()
 
     
     def update(self):
@@ -361,7 +395,33 @@ class Environment:
             pygame.draw.line(self.screen, (127, 127, 127), line[0], line[1], 7)
         for position in self.light_positions:
             pygame.draw.circle(self.screen, Light.color, position, 3, 0)
-        
+            
+### hack but it works
+    def findtype(self,simtype,lighttype):
+        global sim_x
+        if simtype =='stationary_train':
+            if lighttype == 'einstein':
+                sim_x = 'st_e'
+            else:
+                sim_x = 'st_g'
+        elif simtype =='moving_train':
+            if lighttype == 'einstein':
+                sim_x = 'mt_e'
+            else:
+                sim_x = 'mt_g'
+        elif simtype =='train_frame':
+            if lighttype == 'einstein':
+                sim_x = 'tf_e'
+            else:
+                sim_x = 'tf_g'
+        elif simtype =='ground_frame':
+            if lighttype == 'einstein':
+                sim_x = 'gf_e'
+            else:
+                sim_x = 'gf_g'
+
+                
+            
 if __name__ == '__main__': 
     env = Environment(sim_type=input(), light_type=input())
     env.run()
